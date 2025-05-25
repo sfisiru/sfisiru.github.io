@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects - Shehou's Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-300 font-sans">
+
+  <header class="bg-gray-800 shadow-md">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between p-6">
+      <div class="text-xl font-bold text-indigo-400 cursor-pointer" onclick="location.href='index.html'">Shehou Fisiru</div>
+      <ul class="flex gap-8 text-sm">
+        <li><a href="index.html" class="hover:text-indigo-400 text-gray-300">Home</a></li>
+        <li><a href="projects.html" class="hover:text-indigo-400 text-indigo-400 font-semibold">Projects</a></li>
+        <li><a href="index.html#about" class="hover:text-indigo-400 text-gray-300">About</a></li>
+        <li><a href="index.html#contact" class="text-gray-300 hover:text-gray-400">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-28">
+    <h1 class="text-4xl font-bold text-indigo-400 mb-12 text-center">My Projects</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <a href="project1.html" class="bg-gray-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition text-center text-white">
+        <h2 class="text-2xl font-semibold mb-4">Project 1: Network Segmentation Simulation</h2>
+        <p class="text-gray-400">A simulation of a network enviornment featuring multiple subnets to segment communication.</p>
+      </a>
+      <a href="project2.html" class="bg-gray-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition text-center text-white">
+        <h2 class="text-2xl font-semibold mb-4">Project 2: Web Server Simulation</h2>
+        <p class="text-gray-400">Deployed an Apache web server in a DMZ and made it accessible from the public internet using port forwarding and firewall rules.</p>
+      </a>
+      <a href="project3.html" class="bg-gray-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition text-center text-white">
+        <h2 class="text-2xl font-semibold mb-4">Project 3</h2>
+        <p class="text-gray-400">Coming Soon</p>
+      </a>
+    </div>
+  </main>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Network Segmentation Simulation - Shehou's Projects</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-300 font-sans text-base">
+
+  <header class="bg-gray-800 shadow-md">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between p-6">
+      <div class="text-xl font-bold text-indigo-400">Shehou Fisiru</div>
+      <ul class="flex gap-8 text-sm">
+        <li><a href="index.html" class="hover:text-indigo-400 text-gray-300">Home</a></li>
+        <li><a href="projects.html" class="hover:text-indigo-400 text-gray-300">Projects</a></li>
+        <li><a href="index.html#about" class="hover:text-indigo-400 text-gray-300">About</a></li>
+        <li><a href="index.html#contact" class="text-gray-300 hover:text-gray-400">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="project1" class="py-28 px-6 max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold text-indigo-400 mb-12 text-center">Network Segmentation Simulation</h2>
+
+    <div class="bg-gray-800 rounded-lg max-w-4xl mx-auto p-10 space-y-8 text-gray-300">
+      <p class="text-lg"><strong class="text-white">Purpose:</strong><br>
+        The goal is to create a network setup that segments different parts of a network into isolated areas, making it more secure and organized. This can help reduce risks of network breaches and improve performance by limiting broadcast traffic.</p>
+
+      <p class="text-lg"><strong class="text-white">Setup:</strong><br>
+        pfSense is used as a firewall/router to manage and segment the network. Four VMs were created, with one running the pfSense OS, two running Windows and one running Lubuntu. The Windows VMs were placed on one subnet, while the Lubuntu VM was placed on another. The VMs are connected through pfSense, which controls traffic between the segments.</p>
+
+      <p class="text-lg"><strong class="text-white">Key Features:</strong><br>
+        • <strong>Network Segmentation:</strong> VMs are segmented into different subnets, a main network, and a guest network.<br>
+        • <strong>Security:</strong> pfSense controls communication between these segments, ensuring that sensitive data is isolated from other parts of the network.<br>
+        • <strong>File Sharing via SFTP:</strong> Demonstrated how two VMs on the same subnet can communicate via SFTP to share files securely.<br>
+        • <strong>Captive Portal:</strong> A separate subnet (for guests) includes a captive portal, limiting access to the network and improving security for users on the guest network.</p>
+
+      <div class="space-y-10">
+        <p class="text-lg"><strong class="text-white">Virtual Box:</strong><br>
+          <a href="Images/VirtualBox.PNG" target="_blank">
+            <img src="Images/VirtualBox.PNG" alt="Virtual Box Setup" class="w-full rounded-lg shadow-lg mt-2">
+          </a>
+          Pictured here is my virtual box setup, featuring the 4 VMs I used to conduct this project. The pfSense router has 3 network adapters, as seen in the network tab. The first one is a bridge adapter responsible for connecting the system to the internet via the host machine’s connection, and sharing that connection with the internal networks. The other two adapters are for internal networks, one private network where devices can communicate with each other, as well as one guest network.
+        </p>
+
+        <p class="text-lg"><strong class="text-white">pfSense:</strong><br>
+          <a href="Images/pfsense-console.PNG" target="_blank">
+            <img src="Images/pfsense-console.PNG" alt="pfSense Console" class="w-full rounded-lg shadow-lg mt-2">
+          </a>
+          Pictured here is the pfSense console, showcasing the network comprised of the three subnets, 192.168.1.X, 192.168.2.X, and 192.168.3.X. The WAN interface is on the 192.168.1.X subnet, the same subnet the host system. The LAN where the Windows VMs will lie is bound to the 192.168.2.X, isolating it from the host network. The guest network is bound to the 192.168.3.X subnet, isolating it from all other traffic.
+        </p>
+
+        <p class="text-lg"><strong class="text-white">File Transfer:</strong><br>
+          <a href="Images/sftp-transfer.PNG" target="_blank">
+            <img src="Images/sftp-transfer.PNG" alt="File Transfer via SFTP" class="w-full rounded-lg shadow-lg mt-2">
+          </a>
+          Pictured here are my two Windows VMs communicating with each other over the network. You can see the devices recognizing each other on the ARP table, successfully pinging each other, and a text document being transferred over the network via SFTP.
+        </p>
+
+        <p class="text-lg"><strong class="text-white">Guest Network:</strong><br>
+          <a href="Images/captive-portal.PNG" target="_blank">
+            <img src="Images/captive-portal.PNG" alt="Captive Portal" class="w-full rounded-lg shadow-lg mt-2">
+          </a>
+          Pictured here are the pfSense web interface and the Lubuntu VM. On the pfSense web interface, you can see an ARP table showcasing every device connected to the router. You can see the Windows VMs as well as the Lubuntu VM on different subnets. On the Lubuntu VM, you can see the Captive Portal that the user must interact with in order to join the network.
+        </p>
+
+        <p class="text-lg text-white mb-1"><strong>Video:</strong></p>
+
+        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg mb-2">
+          <iframe
+            class="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/_j8d_NJeEcE"
+            title="Network Simulation Video"
+            frameborder="0"
+            allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+          </iframe>
+        </div>
+
+        <p class="text-lg text-gray-300 mb-4">
+          Here is the video of me simulating the network environment.
+        </p>
+      </div>
+      <div class="mt-10 flex justify-between">
+  <a href="index.html" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded transition">← Home</a>
+  <a href="project2.html" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded transition">Next Project →</a>
+     </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web Server Simulation - Shehou's Projects</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-300 font-sans text-base">
+
+  <header class="bg-gray-800 shadow-md">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between p-6">
+      <div class="text-xl font-bold text-indigo-400">Shehou Fisiru</div>
+      <ul class="flex gap-8 text-sm">
+        <li><a href="index.html" class="hover:text-indigo-400 text-gray-300">Home</a></li>
+        <li><a href="projects.html" class="hover:text-indigo-400 text-gray-300">Projects</a></li>
+        <li><a href="index.html#about" class="hover:text-indigo-400 text-gray-300">About</a></li>
+        <li><a href="index.html#contact" class="text-gray-300 hover:text-gray-400">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="project2" class="py-28 px-6 max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold text-indigo-400 mb-12 text-center">Web Server Simulation</h2>
+
+    <div class="bg-gray-800 rounded-lg p-8 max-w-4xl mx-auto space-y-8 text-gray-300">
+      <p class="text-lg text-white"><strong>Purpose:</strong><br>
+        The goal of this project is to securely deploy a public-facing web server from within a virtual machine, while isolating it from the rest of the network devices by placing it in a DMZ.</p>
+
+      <p class="text-lg text-white"><strong>Setup:</strong><br>
+        I created a new subnet designated as a DMZ and installed an Apache Web Server on a Lubuntu Linux VM. I port forwarded traffic from my ISP’s router to my VM network. From there, I then created an additional port forwarding rule on the VM’s pfSense router, forwarding the traffic received from my ISP’s router to the correct VM in the DMZ, while also configuring the appropriate firewall settings to allow this communication. Through this relay of forwarding, I was able to access the web server from anywhere.</p>
+
+      <p class="text-lg text-white"><strong>Key Features:</strong><br>
+        • <strong>DMZ Network Isolation:</strong> The web server runs on its own subnet, as it is facing the public internet, so other network devices must be protected.<br>
+        • <strong>Port Forwarding:</strong> Forwarded traffic twice, once from my internet facing ISP router to my VM network, and again from my VM router to the web server.<br>
+        • <strong>Firewall Configuration:</strong> Created the appropriate firewall rules to allow communications on the appropriate ports.<br>
+        • <strong>Apache Web Server:</strong> Apache was installed on a Lubuntu VM, with the default index page replaced by my custom test page.</p>
+
+      <p class="text-lg text-white font-semibold" style="margin-bottom: 24px;">DMZ:</p>
+      <a href="Images/dmz.PNG" target="_blank">
+        <img src="Images/dmz.PNG" alt="DMZ IP Address and Subnets" class="w-full rounded-lg shadow-lg mb-4" />
+      </a>
+      <p class="text-lg text-gray-300">
+        Pictured here is the IP address of the VM hosting the web server, alongside the four subnets of my virtual network. You might recall from project 1 that the first subnet, 192.168.1.X is where the pfSense VM lies, alongside my regular network devices, serving as a bridged adaptor allowing the other VMs to access the internet. The next two subnets house the main LAN devices and the guest devices, while the newly created subnet, 192.168.4.X, hosts solely the web server.
+      </p>
+
+      <p class="text-lg text-white font-semibold" style="margin-bottom: 24px;">ISP Port Forwarding:</p>
+      <a href="Images/portforwardisp.PNG" target="_blank">
+        <img src="Images/portforwardisp.PNG" alt="ISP Router Port Forwarding" class="w-full rounded-lg shadow-lg mb-4" />
+      </a>
+      <p class="text-lg text-gray-300">
+        Pictured here is the web interface for my router as provided by my ISP. Direct your attention to the rule titled “Web”. It is forwarding traffic from port 25566 to the IP address of my pfSense router, as you can see in the prior image, to port 80. This is because I discovered, through trial and error, that port 80 is blocked by default by most ISPs. In order to counteract this, I assigned a random port number and forwarded the traffic on that port to port 80. I simply chose the number after 25565, as you can see in the first port forwarding rule, which is for my personal game server and unrelated to this project. The “test” rule came from me troubleshooting port 80, while the last two are also unrelated to the project.
+      </p>
+
+      <p class="text-lg text-white font-semibold" style="margin-bottom: 24px;">pfSense Port Forwarding:</p>
+      <a href="Images/portforwardpf.PNG" target="_blank">
+        <img src="Images/portforwardpf.PNG" alt="pfSense Router Port Forwarding" class="w-full rounded-lg shadow-lg mb-4" />
+      </a>
+      <p class="text-lg text-gray-300">
+        Pictured here is the port forwarding web interface for the pfSense router. Here, the traffic that was relayed to my pfSense router from my ISP’s router, thanks to my first port forwarding rule, is forwarded to my web server’s IP address.
+      </p>
+
+      <p class="text-lg text-white font-semibold" style="margin-bottom: 24px;">Firewall:</p>
+      <a href="Images/firewall.PNG" target="_blank">
+        <img src="Images/firewall.PNG" alt="Firewall Rule" class="w-full rounded-lg shadow-lg mb-4" />
+      </a>
+      <p class="text-lg text-gray-300">
+        Pictured here is the firewall rule I created in order to allow communication on port 80 from external devices.
+      </p>
+
+      <p class="text-lg text-white font-semibold" style="margin-bottom: 24px;">Server Accessibility:</p>
+      <a href="Images/phone.PNG" target="_blank">
+        <img src="Images/phone.PNG" alt="Server Accessibility from External Device" class="mx-auto rounded-lg shadow-lg max-h-[500px] w-auto max-w-full mb-4" />
+      </a>
+      <p class="text-lg text-gray-300">
+        Finally, pictured here is my website being accessed from an external device. As you can see in the image, Wi-Fi is disabled, so I am not connected to my local network, and my website is accessible to any device. I did not have a domain name, so the website was accessed by typing my public IP address, followed by the port number (e.g., my.public.address:25566).
+      </p>
+
+      <p class="text-lg text-white font-semibold mb-1">Video:</p>
+      <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg mb-6">
+        <iframe
+          class="absolute top-0 left-0 w-full h-full"
+          src="https://www.youtube.com/embed/wjSKbxpve-Y"
+          title="Web Server Simulation Video"
+          frameborder="0"
+          allowfullscreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+        </iframe>
+      </div>
+
+      <p class="text-lg text-gray-300 mb-4">
+        Here is the video of me simulating the web server.
+      </p>
+
+      <div class="mt-10 flex justify-between gap-4 flex-wrap justify-center sm:justify-between">
+        <a href="project1.html" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded transition">← Previous Project</a>
+        <a href="index.html" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded transition">Home</a>
+        <a href="project3.html" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded transition">Next Project →</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
