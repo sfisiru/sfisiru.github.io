@@ -41,60 +41,60 @@
         The following documents key elements of my project, followed by the <a href="#vpnvideo" class="text-indigo-400 underline hover:text-indigo-300">full video</a> of my results.
       </p>
       <p class="text-lg text-white font-semibold">User Manager:</p>
-      <a href="images/users.PNG" target="_blank" rel="noopener noreferrer">
-        <img src="images/users.PNG" alt="User Manager Screenshot" class="rounded shadow-md mx-auto cursor-pointer" />
+      <a href="Images/users.PNG" target="_blank" rel="noopener noreferrer">
+        <img src="Images/users.PNG" alt="User Manager Screenshot" class="rounded shadow-md mx-auto cursor-pointer" />
       </a>
       <p class="text-lg text-gray-300 mb-6">
         Pictured here are the network user accounts. The first one is the default administrator account, followed by a standard user account, accessible via VPN tunneling, as well as an administrator account accessible via VPN tunneling. They are assigned to the appropriate groups, allowing for appropriate permissions.
       </p>
 
       <p class="text-lg text-white font-semibold">Firewall:</p>
-      <a href="images/vpnfirewall.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
-        <img src="images/vpnfirewall.PNG" alt="Firewall Rule 1" class="rounded shadow-md mx-auto cursor-pointer" />
+      <a href="Images/vpnfirewall.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="Images/vpnfirewall.PNG" alt="Firewall Rule 1" class="rounded shadow-md mx-auto cursor-pointer" />
       </a>
       <p class="text-lg text-gray-300 mb-6">
         Pictured here are the firewall rules for the VPN. The initial rule is allowing the IP address 192.168.5.200, which was designated for the vpnadmin profile, to have access to the firewall GUI via HTTP. Immediately below it is a rule prohibiting access to the firewall GUI from all other users.
       </p>
 
-      <a href="images/vpnworkrule.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
-        <img src="images/vpnworkrule.PNG" alt="Firewall Rule 2" class="rounded shadow-md mx-auto cursor-pointer" />
+      <a href="Images/vpnworkrule.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="Images/vpnworkrule.PNG" alt="Firewall Rule 2" class="rounded shadow-md mx-auto cursor-pointer" />
       </a>
       <p class="text-lg text-gray-300 mb-6">
         Pictured here, the final firewall rule is allowing communication from devices on the 192.168.5.0 subnet, VPN devices, to communicate with devices on the 192.168.2.0 subnet, where the windows workstations lie.
       </p>
 
       <p class="text-lg text-white font-semibold">Certificates:</p>
-      <a href="images/vpncerts.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
-        <img src="images/vpncerts.PNG" alt="User Certificates" class="rounded shadow-md mx-auto cursor-pointer" />
+      <a href="Images/vpncerts.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="Images/vpncerts.PNG" alt="User Certificates" class="rounded shadow-md mx-auto cursor-pointer" />
       </a>
       <p class="text-lg text-gray-300 mb-6">
         Pictured here are the certificates created for each user. The certificate is bundled into the client configuration package, since each user downloads a custom client VPN configuration. The certificates are used to authenticate, and help designate user specific permissions.
       </p>
 
       <p class="text-lg text-white font-semibold">OpenVPN Client:</p>
-      <a href="images/vpnclient.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
-        <img src="images/vpnclient.PNG" alt="OpenVPN Client UI" class="rounded shadow-md mx-auto cursor-pointer" />
+      <a href="Images/vpnclient.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="Images/vpnclient.PNG" alt="OpenVPN Client UI" class="rounded shadow-md mx-auto cursor-pointer" />
       </a>
       <p class="text-lg text-gray-300 mb-6">
         Pictured here is the OpenVPN client interface from my laptop, which is not connected to the VM’s network. I attempt to log into the standard user account in order to access the company portal, as well as communicate with other workstations on the 192.168.2.0 subnet, allowing me to access all of the VM network resources.
       </p>
 
-      <a href="images/vpnportal.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
-        <img src="images/vpnportal.PNG" alt="VPN Tunnel Success" class="rounded shadow-md mx-auto cursor-pointer" />
+      <a href="Images/vpnportal.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="Images/vpnportal.PNG" alt="VPN Tunnel Success" class="rounded shadow-md mx-auto cursor-pointer" />
       </a>
       <p class="text-lg text-gray-300 mb-6">
         Pictured here is me successfully accessing the company portal after authenticating with OpenVPN, as well as displaying my newly obtained IP address on the 192.168.5.0 subnet for the VM’s network. I also pinged a local workstation on the 192.168.2.0 subnet, as well as used SSH.
       </p>
 
-      <a href="images/vpnfirewall.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
-        <img src="images/vpnfirewall.PNG" alt="Standard User Access Denied" class="rounded shadow-md mx-auto cursor-pointer" />
+      <a href="Images/vpnfirewall.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="Images/vpnfirewall.PNG" alt="Standard User Access Denied" class="rounded shadow-md mx-auto cursor-pointer" />
       </a>
       <p class="text-lg text-gray-300 mb-6">
         Pictured here is my failed attempt to access the pfSense GUI via the standard user, due to the access control rules that were put in place.
       </p>
 
-      <a href="images/vpnsuccess.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
-        <img src="images/vpnsuccess.PNG" alt="Admin User Success" class="rounded shadow-md mx-auto cursor-pointer" />
+      <a href="Images/vpnsuccess.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="Images/vpnsuccess.PNG" alt="Admin User Success" class="rounded shadow-md mx-auto cursor-pointer" />
       </a>
       <p class="text-lg text-gray-300 mb-6">
         Finally, pictured here is me successfully accessing the pfSense GUI after authenticating with the admin profile in OpenVPN client. As you can see in the bottom right, I am assigned the static IP address that I designated in the firewall rules to be able to access the firewall GUI.
