@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Project 3 - Shehou's Projects</title>
+  <title>Remote Work Simulation - Shehou's Projects</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 text-gray-300 font-sans text-base">
@@ -21,16 +21,102 @@
   </header>
 
   <section id="project3" class="py-28 px-6 max-w-6xl mx-auto">
-    <h2 class="text-4xl font-bold text-indigo-400 mb-12 text-center">Project 3 - Coming Soon</h2>
+    <h2 class="text-4xl font-bold text-indigo-400 mb-12 text-center">Open VPN Simulation</h2>
 
-    <div class="bg-gray-800 rounded-lg p-8 max-w-4xl mx-auto text-center text-gray-400">
-      <p class="text-lg mb-6">
-        This project page is under construction. Stay tuned for updates!
+    <div class="bg-gray-800 rounded-lg p-8 max-w-4xl mx-auto space-y-8 text-gray-300">
+      <p class="text-lg text-white"><strong>Purpose:</strong><br>
+        The goal of this project is to simulate a remote work environment by using OpenVPN to access network resources from an external device. In addition to accessing resources, access control was also implemented, designating standard users for standard capabilities, and an administrator user allowing a network admin to manage the network remotely.
       </p>
+
+      <p class="text-lg text-white"><strong>Setup:</strong><br>
+        OpenVPN server is installed on the pfSense router, while OpenVPN client is installed on my laptop. Two configurations are exported, one for the standard users and one for the administrator.  Certificates were created allowing users to authenticate, and firewall rules were put into place allowing the appropriate communication between devices, and enforcing the appropriate restrictions for unauthorized users.
+      </p>
+
+      <p class="text-lg text-white"><strong>Key Features:</strong><br>
+        • <strong>OpenVPN:</strong> OpenVPN server is installed onto pfSense, allowing devices with OpenVPN client to access the network externally.<br>
+        • <strong>Security:</strong> User groups were created in order to manage privilege levels. Client specific overrides were implemented in the client packages, allowing administrators to obtain static IP addresses. Firewall rules allowed these specific IP addresses to access the pfSense console.<br>
+        • <strong>Communication Rules:</strong> Created firewall rules allowing users tunneling in via a VPN to communicate with local workstations in the workstation’s subnet.
+      </p>
+      <p class="text-lg text-white mb-6">
+        The following documents key elements of my project, followed by the <a href="#vpnvideo" class="text-indigo-400 underline hover:text-indigo-300">full video</a> of my results.
+      </p>
+      <p class="text-lg text-white font-semibold">User Manager:</p>
+      <a href="images/users.PNG" target="_blank" rel="noopener noreferrer">
+        <img src="images/users.PNG" alt="User Manager Screenshot" class="rounded shadow-md mx-auto cursor-pointer" />
+      </a>
+      <p class="text-lg text-gray-300 mb-6">
+        Pictured here are the network user accounts. The first one is the default administrator account, followed by a standard user account, accessible via VPN tunneling, as well as an administrator account accessible via VPN tunneling. They are assigned to the appropriate groups, allowing for appropriate permissions.
+      </p>
+
+      <p class="text-lg text-white font-semibold">Firewall:</p>
+      <a href="images/vpnfirewall.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="images/vpnfirewall.PNG" alt="Firewall Rule 1" class="rounded shadow-md mx-auto cursor-pointer" />
+      </a>
+      <p class="text-lg text-gray-300 mb-6">
+        Pictured here are the firewall rules for the VPN. The initial rule is allowing the IP address 192.168.5.200, which was designated for the vpnadmin profile, to have access to the firewall GUI via HTTP. Immediately below it is a rule prohibiting access to the firewall GUI from all other users.
+      </p>
+
+      <a href="images/vpnworkrule.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="images/vpnworkrule.PNG" alt="Firewall Rule 2" class="rounded shadow-md mx-auto cursor-pointer" />
+      </a>
+      <p class="text-lg text-gray-300 mb-6">
+        Pictured here, the final firewall rule is allowing communication from devices on the 192.168.5.0 subnet, VPN devices, to communicate with devices on the 192.168.2.0 subnet, where the windows workstations lie.
+      </p>
+
+      <p class="text-lg text-white font-semibold">Certificates:</p>
+      <a href="images/vpncerts.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="images/vpncerts.PNG" alt="User Certificates" class="rounded shadow-md mx-auto cursor-pointer" />
+      </a>
+      <p class="text-lg text-gray-300 mb-6">
+        Pictured here are the certificates created for each user. The certificate is bundled into the client configuration package, since each user downloads a custom client VPN configuration. The certificates are used to authenticate, and help designate user specific permissions.
+      </p>
+
+      <p class="text-lg text-white font-semibold">OpenVPN Client:</p>
+      <a href="images/vpnclient.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="images/vpnclient.PNG" alt="OpenVPN Client UI" class="rounded shadow-md mx-auto cursor-pointer" />
+      </a>
+      <p class="text-lg text-gray-300 mb-6">
+        Pictured here is the OpenVPN client interface from my laptop, which is not connected to the VM’s network. I attempt to log into the standard user account in order to access the company portal, as well as communicate with other workstations on the 192.168.2.0 subnet, allowing me to access all of the VM network resources.
+      </p>
+
+      <a href="images/vpnportal.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="images/vpnportal.PNG" alt="VPN Tunnel Success" class="rounded shadow-md mx-auto cursor-pointer" />
+      </a>
+      <p class="text-lg text-gray-300 mb-6">
+        Pictured here is me successfully accessing the company portal after authenticating with OpenVPN, as well as displaying my newly obtained IP address on the 192.168.5.0 subnet for the VM’s network. I also pinged a local workstation on the 192.168.2.0 subnet, as well as used SSH.
+      </p>
+
+      <a href="images/vpnfirewall.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="images/vpnfirewall.PNG" alt="Standard User Access Denied" class="rounded shadow-md mx-auto cursor-pointer" />
+      </a>
+      <p class="text-lg text-gray-300 mb-6">
+        Pictured here is my failed attempt to access the pfSense GUI via the standard user, due to the access control rules that were put in place.
+      </p>
+
+      <a href="images/vpnsuccess.PNG" target="_blank" rel="noopener noreferrer" class="mt-6 block">
+        <img src="images/vpnsuccess.PNG" alt="Admin User Success" class="rounded shadow-md mx-auto cursor-pointer" />
+      </a>
+      <p class="text-lg text-gray-300 mb-6">
+        Finally, pictured here is me successfully accessing the pfSense GUI after authenticating with the admin profile in OpenVPN client. As you can see in the bottom right, I am assigned the static IP address that I designated in the firewall rules to be able to access the firewall GUI.
+      </p>
+
+      <p class="text-lg text-white font-semibold mb-1" id="vpnvideo">Video:</p>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe class="w-full h-96 rounded shadow-md"
+          src="https://www.youtube.com/embed/-qrtbMpEH28"
+          title="VPN Demo Video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <p class="text-lg text-gray-300 mb-4">
+        Here is the video of me performing the simulation.
+      </p>
+
       <div class="mt-10 flex justify-between gap-4 flex-wrap justify-center sm:justify-between">
-       <a href="project2.html" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded transition">← Previous Project</a>
-       <a href="index.html" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded transition">Home</a>
-       <a href="project3.html" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded transition">Next Project →</a>
+        <a href="project2.html" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded transition">← Previous Project</a>
+        <a href="index.html" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded transition">Home</a>
+        <a href="project4.html" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded transition">Next Project →</a>
       </div>
     </div>
   </section>
